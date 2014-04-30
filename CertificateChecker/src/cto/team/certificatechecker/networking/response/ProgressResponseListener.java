@@ -21,11 +21,17 @@ public abstract class ProgressResponseListener<T extends NetworkModel> implement
 		this.modelClass = modelClass;
 	}
 	
-	public void show() {
+	public void showProgressBar() {
 		Resources res = context.getResources();
 		dialog = ProgressDialog.show(context,
 				res.getString(R.string.request_progress_dialog_title),
 				res.getString(R.string.request_progress_dialog_content));
+	}
+	
+	private void dismissProgressBar() {
+		if(dialog != null) {
+			dialog.dismiss();
+		}
 	}
 	
 	public abstract void onComplete(T modelResult);
@@ -34,12 +40,12 @@ public abstract class ProgressResponseListener<T extends NetworkModel> implement
 	public void onComplete(JsonObject result) {
 		T fromJson = new Gson().fromJson(result, modelClass);
 		onComplete(fromJson);
-		dialog.dismiss();
+		dismissProgressBar();
 	}
 
 	@Override
 	public void onErrorResponse(String errorResponse) {
-		dialog.dismiss();		
+		dismissProgressBar();		
 	}
 
 }
