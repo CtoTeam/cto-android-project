@@ -1,9 +1,26 @@
 <resources>
 
-    <string name="app_name">CertificateChecker</string>
+    <string name="app_name">תעודות וזה</string>
 
     <!-- Network Request Progress dialog -->
     <string name="request_progress_dialog_title">טוען</string>
     <string name="request_progress_dialog_content">רק עוד רגע...</string>
+    
+    <string name="scan_id">סרוק תעודה</string>
+    <string name="action_settings">Settings</string>
+    <string name="soldierImageDescription">תמונת החייל</string>
+    <string name="NameText">שם:</string>
+    <string name="DefaultSoldierName">ישראל ישראלי</string>
+    <string name="IdText">מ.א:</string>
+    <string name="DefaultSoldierId">1234567</string>
+    <string name="CertText">מ. תעודה:</string>
+    <string name="DefaultCertNumber">12345678</string>
+    <string name="CertDateText">תום תוקף:</string>
+    <string name="DefaultCertDate">1/1/2111</string>
+    <string name="AuthorizationsText">אישורי כניסה</string>
+    <string name="CarNumberColumn">מספר רכב</string>
+	<string name="CarTypeColumn">סוג רכב</string>
+	<string name="DateColumn">תום תוקף</string>
+	<string name="BaseColumn">בסיס</string>
 
 </resources>
