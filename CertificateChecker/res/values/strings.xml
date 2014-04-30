@@ -2,4 +2,8 @@
 
     <string name="app_name">CertificateChecker</string>
 
+    <!-- Network Request Progress dialog -->
+    <string name="request_progress_dialog_title">טוען</string>
+    <string name="request_progress_dialog_content">רק עוד רגע...</string>
+
 </resources>
