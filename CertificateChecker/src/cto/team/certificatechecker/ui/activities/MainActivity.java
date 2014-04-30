@@ -5,6 +5,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.gson.JsonObject;
+
 import cto.team.certificatechecker.R;
 import cto.team.certificatechecker.networking.response.ProgressResponseListener;
 import cto.team.certificatechecker.networking.utils.ServerUtils;
@@ -24,9 +27,9 @@ public class MainActivity extends BaseActivity {
 		textView1 = (TextView) findViewById(R.id.textView1);
 		progressResponseListener = new ProgressResponseListener(this) {
 			@Override
-			public void onComplete(String result) {
+			public void onComplete(JsonObject result) {
 				super.onComplete(result);
-				textView1.setText(result);
+				textView1.setText(result.toString());
 			}
 		};
 		button1.setOnClickListener(new OnClickListener() {

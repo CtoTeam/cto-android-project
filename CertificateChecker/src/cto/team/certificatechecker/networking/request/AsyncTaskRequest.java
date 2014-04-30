@@ -11,6 +11,10 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.os.AsyncTask;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import cto.team.certificatechecker.networking.response.ResponseListener;
 
 public class AsyncTaskRequest extends AsyncTask<String, String, String> {
@@ -48,7 +52,8 @@ public class AsyncTaskRequest extends AsyncTask<String, String, String> {
 	@Override
 	protected void onPostExecute(String result) {
 		super.onPostExecute(result);
-		responseListener.onComplete(result);
+		JsonObject resultAsJsonObject = new JsonParser().parse(result).getAsJsonObject();
+		responseListener.onComplete(resultAsJsonObject);
 	}
 	
 }

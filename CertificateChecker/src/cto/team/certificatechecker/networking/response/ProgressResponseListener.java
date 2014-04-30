@@ -3,6 +3,9 @@ package cto.team.certificatechecker.networking.response;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Resources;
+
+import com.google.gson.JsonObject;
+
 import cto.team.certificatechecker.R;
 
 public class ProgressResponseListener implements ResponseListener {
@@ -22,8 +25,8 @@ public class ProgressResponseListener implements ResponseListener {
 	}
 
 	@Override
-	public void onComplete(String result) {
-		dialog.dismiss();		
+	public void onComplete(JsonObject result) {
+		dialog.dismiss();
 	}
 
 	@Override
