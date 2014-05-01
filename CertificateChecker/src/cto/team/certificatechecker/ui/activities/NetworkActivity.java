@@ -25,7 +25,7 @@ public class NetworkActivity extends ActionBarActivity {
 		button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				new AsyncTaskFtpRequest(imageView).execute("");
+				new AsyncTaskFtpRequest(imageView).execute(v.getContext());
 			}
 		});
 	}
