@@ -7,33 +7,21 @@ import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.widget.ImageView;
-import cto.team.certificatechecker.R;
 
 public class AsyncTaskFtpRequest extends AsyncTask<String, String, Bitmap> {
 	
 	private FTPClient ftpClient;
 	private ImageView imageView;
-	private Context context;
 	private ProgressDialog dialog;
 	
-	public AsyncTaskFtpRequest(Context context, ImageView imageView) {
-		this.context = context;
+	public AsyncTaskFtpRequest(ProgressDialog dialog, ImageView imageView) {
 		this.ftpClient = new FTPClient();
 		this.imageView = imageView;
-	}
-	
-	@Override
-	protected void onPreExecute() {
-		Resources res = context.getResources();
-		dialog = ProgressDialog.show(context,
-				res.getString(R.string.request_progress_dialog_title),
-				res.getString(R.string.request_progress_dialog_content));
+		this.dialog = dialog;
 	}
 	
 	@Override

@@ -12,173 +12,180 @@
         android:gravity="center"
         android:text="@string/scan_id"
         android:textSize="42sp" />
-    
-        <TextView
-            android:id="@+id/certNumberText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/idText"
-            android:layout_marginRight="7dp"
-            android:layout_marginTop="10dp"
-            android:layout_toLeftOf="@+id/soldierImage"
-            android:gravity="right"
-            android:text="@string/CertText"
-            android:textSize="20sp" />
 
-        <ImageView
-            android:id="@+id/soldierImage"
-            android:layout_width="100sp"
-            android:layout_height="150dp"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/scanText"
-            android:layout_marginTop="12dp"
-            android:contentDescription="@string/soldierImageDescription"
-            android:src="@drawable/defaultimage" />
+    <TextView
+        android:id="@+id/certNumberText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/idText"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="10dp"
+        android:layout_toLeftOf="@+id/soldierImage"
+        android:gravity="right"
+        android:text="@string/CertText"
+        android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/nameText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/certNumberText"
-            android:layout_alignTop="@+id/soldierImage"
-            android:gravity="right"
-            android:text="@string/NameText"
-            android:textSize="20sp" />
+    <ImageView
+        android:id="@+id/soldierImage"
+        android:layout_width="100sp"
+        android:layout_height="150dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/scanText"
+        android:layout_marginTop="12dp"
+        android:contentDescription="@string/soldierImageDescription"
+        android:src="@drawable/defaultimage" />
 
-        <TextView
-            android:id="@+id/idText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/nameText"
-            android:layout_below="@+id/nameText"
-            android:layout_marginTop="9dp"
-            android:gravity="right"
-            android:text="@string/IdText"
-            android:textSize="20sp" />
+    <TextView
+        android:id="@+id/nameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/certNumberText"
+        android:layout_alignTop="@+id/soldierImage"
+        android:gravity="right"
+        android:text="@string/NameText"
+        android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/soldierId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/idText"
-            android:layout_alignBottom="@+id/idText"
-            android:layout_alignRight="@+id/certNumber"
-            android:text="@string/DefaultSoldierId"
-            android:textSize="20sp" />
+    <TextView
+        android:id="@+id/idText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/nameText"
+        android:layout_below="@+id/nameText"
+        android:layout_marginTop="9dp"
+        android:gravity="right"
+        android:text="@string/IdText"
+        android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/soldierName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/idText"
-            android:layout_alignRight="@+id/soldierId"
-            android:text="@string/DefaultSoldierName"
-            android:textSize="20sp" />
+    <TextView
+        android:id="@+id/soldierId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/idText"
+        android:layout_alignBottom="@+id/idText"
+        android:layout_alignRight="@+id/certNumber"
+        android:text="@string/DefaultSoldierId"
+        android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/certDateText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/certNumberText"
-            android:layout_below="@+id/certNumberText"
-            android:layout_marginTop="9dp"
-            android:gravity="right"
-            android:text="@string/CertDateText"
-            android:textSize="20sp" />
+    <TextView
+        android:id="@+id/soldierName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/idText"
+        android:layout_alignRight="@+id/soldierId"
+        android:text="@string/DefaultSoldierName"
+        android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/authorizations"
+    <TextView
+        android:id="@+id/certDateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/certNumberText"
+        android:layout_below="@+id/certNumberText"
+        android:layout_marginTop="9dp"
+        android:gravity="right"
+        android:text="@string/CertDateText"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/authorizations"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/soldierImage"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="@string/AuthorizationsText"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="38sp" />
+
+    <ScrollView
+        android:id="@+id/tableHeaderScroller"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/authorizations"
+        android:fillViewport="false"
+        android:scrollbarStyle="outsideInset"
+        android:scrollbars="horizontal|vertical" >
+
+        <TableLayout
+            android:id="@+id/authorizationsTable"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/soldierImage"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:text="@string/AuthorizationsText"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="38sp" />
+            android:layout_height="wrap_content" >
 
-            <ScrollView
-                android:id="@+id/tableHeaderScroller"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/authorizations"
-                android:fillViewport="false"
-                android:scrollbarStyle="outsideInset"
-                android:scrollbars="horizontal|vertical" >
+            <TableRow
+                android:id="@+id/tableHeaders"
+                android:layout_width="fill_parent"
+                android:minHeight="25sp" >
 
-		 		<TableLayout 
-		            android:id="@+id/authorizationsTable"
-		            android:layout_width="fill_parent"
-		            android:layout_height="wrap_content"
-		            >
-		            	<TableRow
-		                   android:id="@+id/tableHeaders"
-		                   android:layout_width="fill_parent"
-		                   android:minHeight="25sp">
-		                   <TextView
-		                       android:id="@+id/baseColumn" 
-		                       android:text="@string/BaseColumn"
-		                       style="@style/OddColumn"
-		                       android:layout_width="30sp"/>
-						   <TextView
-		                       android:id="@+id/expirationDateColumn"
-		                       android:text="@string/ExpirationDateColumn"
-		                       style="@style/EvenColumn"
-		                       android:layout_width="30sp" />
-						   <TextView
-		                       android:id="@+id/startDateColumn"
-		                       android:text="@string/StartDateColumn"
-		                       style="@style/EvenColumn"
-		                       android:layout_width="30sp" />
-		                   <TextView
-		                       android:id="@+id/carTypeColumn"
-		                       android:text="@string/CarTypeColumn"
-		                       style="@style/OddColumn"
-		                       android:layout_width="30sp" />
-		                   <TextView
-		                       android:id="@+id/carNumberColumn"
-		                       android:text="@string/CarNumberColumn"
-		                       style="@style/EvenColumn"
-		                       android:layout_width="30sp" />
-		                </TableRow>
-            </TableLayout>
-            </ScrollView> 
- 			<ScrollView
-              android:id="@+id/layout"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:fillViewport="false"
-              android:scrollbarStyle="outsideInset"
-              android:scrollbars="horizontal|vertical" 
-              android:layout_below="@+id/tableHeaderScroller"
-              android:layout_marginTop="-11sp">
-		 		<TableLayout 
-		            android:id="@+id/authorizationsTableContent"
-		            android:layout_width="fill_parent"
-		            android:layout_height="wrap_content"
-		            >
-           		</TableLayout>
-       		</ScrollView>
+                <TextView
+                    android:id="@+id/baseColumn"
+                    style="@style/OddColumn"
+                    android:layout_width="30sp"
+                    android:text="@string/BaseColumn" />
 
- 			<TextView
- 			    android:id="@+id/certDate"
- 			    android:layout_width="wrap_content"
- 			    android:layout_height="wrap_content"
- 			    android:layout_alignBaseline="@+id/certDateText"
- 			    android:layout_alignBottom="@+id/certDateText"
- 			    android:layout_alignRight="@+id/certNumber"
- 			    android:text="@string/DefaultCertDate"
- 			    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/expirationDateColumn"
+                    style="@style/EvenColumn"
+                    android:layout_width="30sp"
+                    android:text="@string/ExpirationDateColumn" />
 
- 			<TextView
- 			    android:id="@+id/certNumber"
- 			    android:layout_width="wrap_content"
- 			    android:layout_height="wrap_content"
- 			    android:layout_above="@+id/certDateText"
- 			    android:layout_marginRight="7dp"
- 			    android:layout_toLeftOf="@+id/certDateText"
- 			    android:text="@string/DefaultCertNumber"
- 			    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/startDateColumn"
+                    style="@style/EvenColumn"
+                    android:layout_width="30sp"
+                    android:text="@string/StartDateColumn" />
+
+                <TextView
+                    android:id="@+id/carTypeColumn"
+                    style="@style/OddColumn"
+                    android:layout_width="30sp"
+                    android:text="@string/CarTypeColumn" />
+
+                <TextView
+                    android:id="@+id/carNumberColumn"
+                    style="@style/EvenColumn"
+                    android:layout_width="30sp"
+                    android:text="@string/CarNumberColumn" />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tableHeaderScroller"
+        android:layout_marginTop="-11sp"
+        android:fillViewport="false"
+        android:scrollbarStyle="outsideInset"
+        android:scrollbars="horizontal|vertical" >
+
+        <TableLayout
+            android:id="@+id/authorizationsTableContent"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+        </TableLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/certDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/certDateText"
+        android:layout_alignBottom="@+id/certDateText"
+        android:layout_alignRight="@+id/certNumber"
+        android:text="@string/DefaultCertDate"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/certNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/certNumberText"
+        android:layout_alignBottom="@+id/certNumberText"
+        android:layout_marginRight="16dp"
+        android:layout_toLeftOf="@+id/certDateText"
+        android:text="@string/DefaultCertNumber"
+        android:textSize="20sp" />
 
 </RelativeLayout>
