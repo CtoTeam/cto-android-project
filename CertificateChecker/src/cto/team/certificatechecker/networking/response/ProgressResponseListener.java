@@ -4,21 +4,17 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Resources;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import cto.team.certificatechecker.R;
-import cto.team.certificatechecker.models.NetworkModel;
 
-public abstract class ProgressResponseListener<T extends NetworkModel> implements ResponseListener {
+public abstract class ProgressResponseListener implements ResponseListener {
 
 	private ProgressDialog dialog;
 	private Context context;
-	private Class<T> modelClass;
 
-	public ProgressResponseListener(Context context, Class<T> modelClass) {
+	public ProgressResponseListener(Context context) {
 		this.context = context;
-		this.modelClass = modelClass;
 	}
 	
 	public void showProgressBar() {
@@ -34,12 +30,8 @@ public abstract class ProgressResponseListener<T extends NetworkModel> implement
 		}
 	}
 	
-	public abstract void onComplete(T modelResult);
-
 	@Override
 	public void onComplete(JsonObject result) {
-		T fromJson = new Gson().fromJson(result, modelClass);
-		onComplete(fromJson);
 		dismissProgressBar();
 	}
 

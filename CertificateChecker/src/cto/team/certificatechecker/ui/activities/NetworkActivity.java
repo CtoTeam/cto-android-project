@@ -8,14 +8,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import cto.team.certificatechecker.R;
 import cto.team.certificatechecker.models.Weather;
-import cto.team.certificatechecker.networking.response.ProgressResponseListener;
+import cto.team.certificatechecker.networking.response.ModelResponseListener;
 import cto.team.certificatechecker.networking.utils.ServerAPI;
 
 public class NetworkActivity extends ActionBarActivity {
 
 	private Button button;
 	private TextView textView;
-	private ProgressResponseListener<Weather> responseListener;
+	private ModelResponseListener<Weather> responseListener;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class NetworkActivity extends ActionBarActivity {
 
         button = (Button) findViewById(R.id.button);
         textView = (TextView) findViewById(R.id.textView);
-        responseListener = new ProgressResponseListener<Weather>(this, Weather.class) {
+        responseListener = new ModelResponseListener<Weather>(this, Weather.class) {
 			@Override
 			public void onComplete(Weather weather) {
 				String text = "";
