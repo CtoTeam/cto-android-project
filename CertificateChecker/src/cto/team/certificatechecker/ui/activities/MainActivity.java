@@ -96,6 +96,7 @@ public class MainActivity extends ActionBarActivity {
     	certNumberTextView = (TextView)findViewById(R.id.certNumber);
     	certDateTextView = (TextView)findViewById(R.id.certDate);
     	authorizationsTableLayout = (TableLayout)findViewById(R.id.authorizationsTableContent);
+    	
     	soldierImage = (ImageView)findViewById(R.id.soldierImage);
     	
     	
