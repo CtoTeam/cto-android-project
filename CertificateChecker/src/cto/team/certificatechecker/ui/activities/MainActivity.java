@@ -154,6 +154,12 @@ public class MainActivity extends ActionBarActivity {
         			CarPermission permission = result.CarPermissions[i];
         			authorizationsTableLayout.addView(generateRow(permission.CarID, permission.CarType, permission.Base, permission.StartDate, permission.ExpirationDate));
         		}
+        		
+        		if (!result.IsValidCert)
+        		{
+        			InvalidCertDialog icd = new InvalidCertDialog();
+        			icd.show(getFragmentManager(), "");
+        		}
         	}
 		};
 		
