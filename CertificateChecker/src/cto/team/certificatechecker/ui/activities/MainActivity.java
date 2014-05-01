@@ -1,7 +1,5 @@
 package cto.team.certificatechecker.ui.activities;
 
-import java.util.Date;
-
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -12,24 +10,21 @@ import android.nfc.tech.NfcB;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-
-import com.google.gson.JsonObject;
-
 import cto.team.certificatechecker.R;
 import cto.team.certificatechecker.models.CarPermission;
 import cto.team.certificatechecker.models.SoldierDetails;
+import cto.team.certificatechecker.networking.request.AsyncTaskFtpRequest;
 import cto.team.certificatechecker.networking.response.ModelResponseListener;
-import cto.team.certificatechecker.networking.response.ProgressResponseListener;
 import cto.team.certificatechecker.networking.utils.ServerUtils;
 
 public class MainActivity extends ActionBarActivity {
@@ -39,6 +34,7 @@ public class MainActivity extends ActionBarActivity {
 	private TextView certNumberTextView;
 	private TextView certDateTextView;
 	private TableLayout authorizationsTableLayout;
+	private ImageView soldierImage;
 	
 	private static final int COLUMN_WIDTH = 20;
 	private static final int DATE_COLUMN_WIDTH = 30;
@@ -100,6 +96,7 @@ public class MainActivity extends ActionBarActivity {
     	certNumberTextView = (TextView)findViewById(R.id.certNumber);
     	certDateTextView = (TextView)findViewById(R.id.certDate);
     	authorizationsTableLayout = (TableLayout)findViewById(R.id.authorizationsTableContent);
+    	soldierImage = (ImageView)findViewById(R.id.soldierImage);
     	
 		// Construct the data to write to the tag
 		// Should be of the form [relay/group]-[rid/gid]-[cmd]
@@ -142,6 +139,8 @@ public class MainActivity extends ActionBarActivity {
         	public void onComplete(SoldierDetails result) {
         		// TODO Auto-generated method stub
 
+	    		new AsyncTaskFtpRequest(soldierImage).execute(Integer.toString(result.SoldierID));
+	    		
         		soldierNameTextView.setText(result.Name);
         		soldierIdTextView.setText(Integer.toString(result.SoldierID));
         		certNumberTextView.setText(result.CertID);
