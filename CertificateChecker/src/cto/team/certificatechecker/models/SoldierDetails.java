@@ -10,6 +10,6 @@ public class SoldierDetails implements NetworkModel{
 	public String Name;
 	public String CertID;
 	public String ExpirationDate;
-	public boolean IsStolen;
+	public int IsStolen;
 	public CarPermission[] CarPermissions;
 }

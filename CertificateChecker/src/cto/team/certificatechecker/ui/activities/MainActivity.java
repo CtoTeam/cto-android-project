@@ -155,7 +155,7 @@ public class MainActivity extends ActionBarActivity {
         			authorizationsTableLayout.addView(generateRow(permission.CarID, permission.CarType, permission.Base, permission.StartDate, permission.ExpirationDate));
         		}
         		
-        		if (!result.IsStolen)
+        		if (result.IsStolen == 0)
         		{
         			InvalidCertDialog icd = new InvalidCertDialog();
         			icd.show(getFragmentManager(), "");
