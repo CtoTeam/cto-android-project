@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class SoldierDetails implements NetworkModel{
 
-	public int SoldierId;
+	public int SoldierID;
 	public String Name;
 	public String CertID;
-	public Date ExpirationDate;
-	public CarPermission[] Permissions;
+	public String ExpirationDate;
+	public CarPermission[] CarPermissions;
 }

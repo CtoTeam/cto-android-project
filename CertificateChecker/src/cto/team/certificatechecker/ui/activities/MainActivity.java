@@ -134,7 +134,7 @@ public class MainActivity extends ActionBarActivity {
 	    Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
 	    
 	    byte[] certIdBytes = tag.getId();
-    	String certId = certIdBytes[0] + "," + certIdBytes[1] + "," + certIdBytes[2] + certIdBytes[3];
+    	String certId = certIdBytes[0] + "," + certIdBytes[1] + "," + certIdBytes[2] + "," + certIdBytes[3];
 //    	params.put("nfcid", "12345");
 	    // "http://www.hemed.podserver.info/?nfcid=12345"
 	    ServerUtils.runGetRequest("http://www.hemed.podserver.info/?nfcid=" + certId, null, new ModelResponseListener<SoldierDetails>(this, SoldierDetails.class) {
@@ -143,25 +143,26 @@ public class MainActivity extends ActionBarActivity {
         		// TODO Auto-generated method stub
 
         		soldierNameTextView.setText(result.Name);
-        		soldierIdTextView.setText(result.SoldierId);
+        		soldierIdTextView.setText(Integer.toString(result.SoldierID));
         		certNumberTextView.setText(result.CertID);
-        		certDateTextView.setText(DateFormat.format("dd/MM/yyyy", result.ExpirationDate));
+        		certDateTextView.setText(result.ExpirationDate);
         		
-        		for (int i = 0; i < result.Permissions.length; i++)
+        		authorizationsTableLayout.removeAllViews();
+        		for (int i = 0; i < result.CarPermissions.length; i++)
         		{
-        			CarPermission permission = result.Permissions[i];
+        			CarPermission permission = result.CarPermissions[i];
         			authorizationsTableLayout.addView(generateRow(permission.CarID, permission.CarType, permission.Base, permission.StartDate, permission.ExpirationDate));
         		}
         	}
 		});
 	}
     
-    private TableRow generateRow(String carNumber, String carType, String base,Date startDate, Date expirationDate)
+    private TableRow generateRow(String carNumber, String carType, String base,String startDate, String expirationDate)
     {
     	TableRow row = new TableRow(getApplicationContext());
     	row.addView(generateColumn(base,COLUMN_WIDTH, false));
-    	row.addView(generateColumn(DateFormat.format("dd/MM/yyyy", expirationDate).toString(),DATE_COLUMN_WIDTH ,true));
-    	row.addView(generateColumn(DateFormat.format("dd/MM/yyyy", startDate).toString(),DATE_COLUMN_WIDTH, true));
+    	row.addView(generateColumn(expirationDate,DATE_COLUMN_WIDTH ,true));
+    	row.addView(generateColumn(startDate,DATE_COLUMN_WIDTH, true));
     	row.addView(generateColumn(carType,COLUMN_WIDTH, false));
     	row.addView(generateColumn(carNumber,COLUMN_WIDTH, true));
     	
