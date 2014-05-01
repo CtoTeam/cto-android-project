@@ -22,14 +22,10 @@ import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-
-import com.google.gson.JsonObject;
-
 import cto.team.certificatechecker.R;
 import cto.team.certificatechecker.models.CarPermission;
 import cto.team.certificatechecker.models.SoldierDetails;
 import cto.team.certificatechecker.networking.response.ModelResponseListener;
-import cto.team.certificatechecker.networking.response.ProgressResponseListener;
 import cto.team.certificatechecker.networking.utils.ServerUtils;
 
 public class MainActivity extends ActionBarActivity {
@@ -100,6 +96,7 @@ public class MainActivity extends ActionBarActivity {
     	certNumberTextView = (TextView)findViewById(R.id.certNumber);
     	certDateTextView = (TextView)findViewById(R.id.certDate);
     	authorizationsTableLayout = (TableLayout)findViewById(R.id.authorizationsTableContent);
+    	
     	
 		// Construct the data to write to the tag
 		// Should be of the form [relay/group]-[rid/gid]-[cmd]
