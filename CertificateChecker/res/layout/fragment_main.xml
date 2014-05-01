@@ -18,7 +18,7 @@
     android:layout_height="match_parent"
     android:layout_marginTop="40sp"
     android:visibility="invisible"
-    android:id="@+id/container" >
+    android:id="@+id/fragmentContainer" >
 
         <TextView
             android:id="@+id/certNumberText"

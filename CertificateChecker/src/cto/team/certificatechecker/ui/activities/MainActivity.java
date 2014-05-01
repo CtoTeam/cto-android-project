@@ -102,7 +102,7 @@ public class MainActivity extends ActionBarActivity {
 		authorizationsTableLayout = (TableLayout) findViewById(R.id.authorizationsTableContent);
     	
     	soldierImage = (ImageView)findViewById(R.id.soldierImage);
-    	container = (RelativeLayout)findViewById(R.id.container);
+    	container = (RelativeLayout)findViewById(R.id.fragmentContainer);
     	
     	
 		// Construct the data to write to the tag
