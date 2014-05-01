@@ -175,9 +175,8 @@
  			    android:id="@+id/certNumber"
  			    android:layout_width="wrap_content"
  			    android:layout_height="wrap_content"
- 			    android:layout_alignBaseline="@+id/certNumberText"
- 			    android:layout_alignBottom="@+id/certNumberText"
- 			    android:layout_marginRight="16dp"
+ 			    android:layout_above="@+id/certDateText"
+ 			    android:layout_marginRight="7dp"
  			    android:layout_toLeftOf="@+id/certDateText"
  			    android:text="@string/DefaultCertNumber"
  			    android:textSize="20sp" />
