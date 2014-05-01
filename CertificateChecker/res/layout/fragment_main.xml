@@ -188,4 +188,4 @@
         android:text="@string/DefaultCertNumber"
         android:textSize="20sp" />
 
-</RelativeLayout>
+</RelativeLayout> 
