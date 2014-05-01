@@ -57,17 +57,6 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/certNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/certNumberText"
-            android:layout_alignBottom="@+id/certNumberText"
-            android:layout_marginRight="8dp"
-            android:layout_toLeftOf="@+id/certNumberText"
-            android:text="@string/DefaultCertNumber"
-            android:textSize="20sp" />
-
-        <TextView
             android:id="@+id/soldierId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -84,16 +73,6 @@
             android:layout_above="@+id/idText"
             android:layout_alignRight="@+id/soldierId"
             android:text="@string/DefaultSoldierName"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/certDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/certDateText"
-            android:layout_alignBottom="@+id/certDateText"
-            android:layout_alignLeft="@+id/certNumber"
-            android:text="@string/DefaultCertDate"
             android:textSize="20sp" />
 
         <TextView
@@ -181,4 +160,26 @@
 		            >
            		</TableLayout>
        		</ScrollView>
+
+ 			<TextView
+ 			    android:id="@+id/certDate"
+ 			    android:layout_width="wrap_content"
+ 			    android:layout_height="wrap_content"
+ 			    android:layout_alignBaseline="@+id/certDateText"
+ 			    android:layout_alignBottom="@+id/certDateText"
+ 			    android:layout_alignRight="@+id/certNumber"
+ 			    android:text="@string/DefaultCertDate"
+ 			    android:textSize="20sp" />
+
+ 			<TextView
+ 			    android:id="@+id/certNumber"
+ 			    android:layout_width="wrap_content"
+ 			    android:layout_height="wrap_content"
+ 			    android:layout_alignBaseline="@+id/certNumberText"
+ 			    android:layout_alignBottom="@+id/certNumberText"
+ 			    android:layout_marginRight="16dp"
+ 			    android:layout_toLeftOf="@+id/certDateText"
+ 			    android:text="@string/DefaultCertNumber"
+ 			    android:textSize="20sp" />
+
 </RelativeLayout>
