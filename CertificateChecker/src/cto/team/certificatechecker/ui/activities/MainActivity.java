@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -37,6 +38,7 @@ public class MainActivity extends ActionBarActivity {
 	private TextView certDateTextView;
 	private TableLayout authorizationsTableLayout;
 	private ImageView soldierImage;
+	private RelativeLayout container; 
 	
 	private static final int COLUMN_WIDTH = 20;
 	private static final int DATE_COLUMN_WIDTH = 30;
@@ -100,6 +102,7 @@ public class MainActivity extends ActionBarActivity {
 		authorizationsTableLayout = (TableLayout) findViewById(R.id.authorizationsTableContent);
     	
     	soldierImage = (ImageView)findViewById(R.id.soldierImage);
+    	container = (RelativeLayout)findViewById(R.id.container);
     	
     	
 		// Construct the data to write to the tag
@@ -169,6 +172,8 @@ public class MainActivity extends ActionBarActivity {
         			InvalidCertDialog icd = new InvalidCertDialog();
         			icd.show(getFragmentManager(), "");
         		}
+        		
+        		container.setVisibility(View.VISIBLE);
         	}
 		};
 		
