@@ -91,11 +91,11 @@ public class MainActivity extends ActionBarActivity {
     protected void onResume() {
 		super.onResume();
 		
-	    soldierNameTextView = (TextView)findViewById(R.id.soldierName);
-    	soldierIdTextView = (TextView)findViewById(R.id.soldierId);
-    	certNumberTextView = (TextView)findViewById(R.id.certNumber);
-    	certDateTextView = (TextView)findViewById(R.id.certDate);
-    	authorizationsTableLayout = (TableLayout)findViewById(R.id.authorizationsTableContent);
+		soldierNameTextView = (TextView) findViewById(R.id.soldierName);
+		soldierIdTextView = (TextView) findViewById(R.id.soldierId);
+		certNumberTextView = (TextView) findViewById(R.id.certNumber);
+		certDateTextView = (TextView) findViewById(R.id.certDate);
+		authorizationsTableLayout = (TableLayout) findViewById(R.id.authorizationsTableContent);
     	
     	soldierImage = (ImageView)findViewById(R.id.soldierImage);
     	
