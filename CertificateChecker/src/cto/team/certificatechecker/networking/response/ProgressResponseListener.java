@@ -15,7 +15,6 @@ public class ProgressResponseListener implements ResponseListener {
 
 	public ProgressResponseListener(Context context) {
 		this.context = context;
-		show();
 	}
 	
 	public void show() {

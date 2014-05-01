@@ -135,7 +135,9 @@ public class MainActivity extends ActionBarActivity {
     	
 //    	Map<String,String> params = new HashMap<String, String>();
 //    	params.put("nfcid", "12345");
-    	ServerUtils.runGetRequest("http://www.hemed.podserver.info/?nfcid=12345", null, new ProgressResponseListener(this) {
+	    // "http://www.hemed.podserver.info/?nfcid=12345"
+	    
+    	ServerUtils.runGetRequest("api.openweathermap.org/data/2.5/weather?q=London,uk", null, new ProgressResponseListener(this) {
 			@Override
         	public void onComplete(JsonObject result) {
         		// TODO Auto-generated method stub
