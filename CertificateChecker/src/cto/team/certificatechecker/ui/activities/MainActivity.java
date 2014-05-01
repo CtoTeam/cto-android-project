@@ -1,8 +1,10 @@
 package cto.team.certificatechecker.ui.activities;
 
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
@@ -128,6 +130,12 @@ public class MainActivity extends ActionBarActivity {
     	
 	@Override
 	public void onNewIntent(Intent intent) {
+
+		Resources res = this.getResources();
+		final ProgressDialog dialog = ProgressDialog.show(this,
+				res.getString(R.string.request_progress_dialog_title),
+				res.getString(R.string.request_progress_dialog_content));
+		
 	    // When an NFC tag is being written, call the write tag function when an intent is
 	    // received that says the tag is within range of the device and ready to be written to
 	    Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
@@ -142,7 +150,7 @@ public class MainActivity extends ActionBarActivity {
         	public void onComplete(SoldierDetails result) {
         		// TODO Auto-generated method stub
 
-	    		new AsyncTaskFtpRequest(getContext(), soldierImage).execute(Integer.toString(result.SoldierID));
+	    		new AsyncTaskFtpRequest(dialog, soldierImage).execute(Integer.toString(result.SoldierID));
 	    		
         		soldierNameTextView.setText(result.Name);
         		soldierIdTextView.setText(Integer.toString(result.SoldierID));

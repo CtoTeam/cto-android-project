@@ -7,7 +7,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import cto.team.certificatechecker.R;
-import cto.team.certificatechecker.networking.request.AsyncTaskFtpRequest;
 
 public class NetworkActivity extends ActionBarActivity {
 
@@ -25,7 +24,7 @@ public class NetworkActivity extends ActionBarActivity {
 		button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				new AsyncTaskFtpRequest(v.getContext(), imageView).execute("");
+//				new AsyncTaskFtpRequest(v.getContext(), imageView).execute("");
 			}
 		});
 	}
