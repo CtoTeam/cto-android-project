@@ -1,6 +1,6 @@
 package cto.team.certificatechecker.ui.activities;
 
-import java.sql.Date;
+import java.util.Date;
 
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -26,6 +26,9 @@ import android.widget.TextView;
 import com.google.gson.JsonObject;
 
 import cto.team.certificatechecker.R;
+import cto.team.certificatechecker.models.CarPermission;
+import cto.team.certificatechecker.models.SoldierDetails;
+import cto.team.certificatechecker.networking.response.ModelResponseListener;
 import cto.team.certificatechecker.networking.response.ProgressResponseListener;
 import cto.team.certificatechecker.networking.utils.ServerUtils;
 
@@ -129,39 +132,37 @@ public class MainActivity extends ActionBarActivity {
 	    // When an NFC tag is being written, call the write tag function when an intent is
 	    // received that says the tag is within range of the device and ready to be written to
 	    Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-	    String ndefmsg = intent.getParcelableExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
 	    
-	    byte[] iddd = tag.getId();
-    	
-//    	Map<String,String> params = new HashMap<String, String>();
+	    byte[] certIdBytes = tag.getId();
+    	String certId = certIdBytes[0] + "," + certIdBytes[1] + "," + certIdBytes[2] + "," + certIdBytes[3];
 //    	params.put("nfcid", "12345");
 	    // "http://www.hemed.podserver.info/?nfcid=12345"
-	    
-    	ServerUtils.runGetRequest("api.openweathermap.org/data/2.5/weather?q=London,uk", null, new ProgressResponseListener(this) {
-			@Override
-        	public void onComplete(JsonObject result) {
+	    ServerUtils.runGetRequest("http://www.hemed.podserver.info/?nfcid=" + certId, null, new ModelResponseListener<SoldierDetails>(this, SoldierDetails.class) {
+	    	@Override
+        	public void onComplete(SoldierDetails result) {
         		// TODO Auto-generated method stub
-        		super.onComplete(result);
 
-        		soldierNameTextView.setText("נדב קרמר");
-        		soldierIdTextView.setText("5791171");
-        		certNumberTextView.setText("87654321");
-        		certDateTextView.setText("30/4/2014");
+        		soldierNameTextView.setText(result.Name);
+        		soldierIdTextView.setText(Integer.toString(result.SoldierID));
+        		certNumberTextView.setText(result.CertID);
+        		certDateTextView.setText(result.ExpirationDate);
         		
-        		for (int i = 0; i < 20; i++)
+        		authorizationsTableLayout.removeAllViews();
+        		for (int i = 0; i < result.CarPermissions.length; i++)
         		{
-        			authorizationsTableLayout.addView(generateRow("12-345-67", "מאזדה", "צריפין",new Date(2012,9,24), new Date(2014,9,24)));
+        			CarPermission permission = result.CarPermissions[i];
+        			authorizationsTableLayout.addView(generateRow(permission.CarID, permission.CarType, permission.Base, permission.StartDate, permission.ExpirationDate));
         		}
         	}
-        });
+		});
 	}
     
-    private TableRow generateRow(String carNumber, String carType, String base,Date startionDate, Date expirationDate)
+    private TableRow generateRow(String carNumber, String carType, String base,String startDate, String expirationDate)
     {
     	TableRow row = new TableRow(getApplicationContext());
     	row.addView(generateColumn(base,COLUMN_WIDTH, false));
-    	row.addView(generateColumn(DateFormat.format("dd/MM/yyyy", expirationDate).toString(),DATE_COLUMN_WIDTH ,true));
-    	row.addView(generateColumn(DateFormat.format("dd/MM/yyyy", startionDate).toString(),DATE_COLUMN_WIDTH, true));
+    	row.addView(generateColumn(expirationDate,DATE_COLUMN_WIDTH ,true));
+    	row.addView(generateColumn(startDate,DATE_COLUMN_WIDTH, true));
     	row.addView(generateColumn(carType,COLUMN_WIDTH, false));
     	row.addView(generateColumn(carNumber,COLUMN_WIDTH, true));
     	
