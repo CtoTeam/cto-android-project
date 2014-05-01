@@ -20,7 +20,8 @@
     <string name="AuthorizationsText">אישורי כניסה</string>
     <string name="CarNumberColumn">מספר רכב</string>
 	<string name="CarTypeColumn">סוג רכב</string>
-	<string name="DateColumn">תום תוקף</string>
+	<string name="StartDateColumn">תאריך תחילה</string>
+	<string name="ExpirationDateColumn">תאריך סיום</string>
 	<string name="BaseColumn">בסיס</string>
 
 </resources>

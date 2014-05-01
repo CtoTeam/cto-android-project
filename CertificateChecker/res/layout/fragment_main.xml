@@ -1,5 +1,5 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
@@ -118,44 +118,67 @@
             android:text="@string/AuthorizationsText"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="38sp" />
-         <ScrollView 
-    android:id="@+id/layout" 
-    android:layout_height="match_parent"         
-    android:scrollbars="horizontal|vertical" 
-    android:layout_width="match_parent"     
-    android:layout_marginTop="5dip"     
-    android:scrollbarStyle="outsideInset"
-    android:fillViewport="true"
-    android:layout_below="@+id/authorizations"> 
-        <TableLayout 
-            android:id="@+id/authorizationsTable"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-            	<TableRow
-                   android:id="@+id/tableHeaders"
-                   android:layout_width="fill_parent"
-                   android:minHeight="25sp">
-                   <TextView
-                       android:id="@+id/baseColumn" 
-                       android:text="@string/BaseColumn"
-                       style="@style/OddColumn"/>
 
-                   <TextView
-                       android:id="@+id/DateColumn"
-                       android:text="@string/DateColumn"
-                       style="@style/EvenColumn" />
+            <ScrollView
+                android:id="@+id/tableHeaderScroller"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/authorizations"
+                android:fillViewport="false"
+                android:scrollbarStyle="outsideInset"
+                android:scrollbars="horizontal|vertical" >
 
-                   <TextView
-                       android:id="@+id/carTypeColumn"
-                       android:text="@string/CarTypeColumn"
-                       style="@style/OddColumn" />
-
-                   <TextView
-                       android:id="@+id/carNumberColumn"
-                       android:text="@string/CarNumberColumn"
-                       style="@style/EvenColumn" />
-                </TableRow>
+		 		<TableLayout 
+		            android:id="@+id/authorizationsTable"
+		            android:layout_width="fill_parent"
+		            android:layout_height="wrap_content"
+		            >
+		            	<TableRow
+		                   android:id="@+id/tableHeaders"
+		                   android:layout_width="fill_parent"
+		                   android:minHeight="25sp">
+		                   <TextView
+		                       android:id="@+id/baseColumn" 
+		                       android:text="@string/BaseColumn"
+		                       style="@style/OddColumn"
+		                       android:layout_width="30sp"/>
+						   <TextView
+		                       android:id="@+id/expirationDateColumn"
+		                       android:text="@string/ExpirationDateColumn"
+		                       style="@style/EvenColumn"
+		                       android:layout_width="30sp" />
+						   <TextView
+		                       android:id="@+id/startDateColumn"
+		                       android:text="@string/StartDateColumn"
+		                       style="@style/EvenColumn"
+		                       android:layout_width="30sp" />
+		                   <TextView
+		                       android:id="@+id/carTypeColumn"
+		                       android:text="@string/CarTypeColumn"
+		                       style="@style/OddColumn"
+		                       android:layout_width="30sp" />
+		                   <TextView
+		                       android:id="@+id/carNumberColumn"
+		                       android:text="@string/CarNumberColumn"
+		                       style="@style/EvenColumn"
+		                       android:layout_width="30sp" />
+		                </TableRow>
             </TableLayout>
             </ScrollView> 
-
+ 			<ScrollView
+              android:id="@+id/layout"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fillViewport="false"
+              android:scrollbarStyle="outsideInset"
+              android:scrollbars="horizontal|vertical" 
+              android:layout_below="@+id/tableHeaderScroller"
+              android:layout_marginTop="-11sp">
+		 		<TableLayout 
+		            android:id="@+id/authorizationsTableContent"
+		            android:layout_width="fill_parent"
+		            android:layout_height="wrap_content"
+		            >
+           		</TableLayout>
+       		</ScrollView>
 </RelativeLayout>

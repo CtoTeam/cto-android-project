@@ -9,6 +9,7 @@ import android.widget.TextView;
 import cto.team.certificatechecker.R;
 import cto.team.certificatechecker.models.Weather;
 import cto.team.certificatechecker.networking.response.ModelResponseListener;
+import cto.team.certificatechecker.networking.response.ProgressResponseListener;
 import cto.team.certificatechecker.networking.utils.ServerAPI;
 
 public class NetworkActivity extends ActionBarActivity {
