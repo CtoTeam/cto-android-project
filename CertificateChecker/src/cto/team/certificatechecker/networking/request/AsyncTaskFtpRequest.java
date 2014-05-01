@@ -46,7 +46,7 @@ public class AsyncTaskFtpRequest extends AsyncTask<String, String, Bitmap> {
 	           ftpClient.enterLocalPassiveMode();
 	           ftpClient.changeWorkingDirectory("/htdocs");
 
-	           InputStream imageInputStream = ftpClient.retrieveFileStream("2.png");
+	           InputStream imageInputStream = ftpClient.retrieveFileStream(params[0] + ".png");
 	           
 	           Bitmap image = BitmapFactory.decodeStream(imageInputStream);
 	           
