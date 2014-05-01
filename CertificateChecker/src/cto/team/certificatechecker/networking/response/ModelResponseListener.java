@@ -1,9 +1,10 @@
 package cto.team.certificatechecker.networking.response;
 
+import android.content.Context;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import android.content.Context;
 import cto.team.certificatechecker.models.NetworkModel;
 
 public abstract class ModelResponseListener<T extends NetworkModel> extends ProgressResponseListener {
