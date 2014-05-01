@@ -134,12 +134,13 @@ public class MainActivity extends ActionBarActivity {
     	String certId = certIdBytes[0] + "," + certIdBytes[1] + "," + certIdBytes[2] + "," + certIdBytes[3];
 //    	params.put("nfcid", "12345");
 	    // "http://www.hemed.podserver.info/?nfcid=12345"
-	    ServerUtils.runGetRequest("http://www.hemed.podserver.info/?nfcid=" + certId, null, new ModelResponseListener<SoldierDetails>(this, SoldierDetails.class) {
+    	
+    	ModelResponseListener<SoldierDetails> modelResponseListener = new ModelResponseListener<SoldierDetails>(this, SoldierDetails.class) {
 	    	@Override
         	public void onComplete(SoldierDetails result) {
         		// TODO Auto-generated method stub
 
-	    		new AsyncTaskFtpRequest(soldierImage).execute(Integer.toString(result.SoldierID));
+	    		new AsyncTaskFtpRequest(getContext(), soldierImage).execute(Integer.toString(result.SoldierID));
 	    		
         		soldierNameTextView.setText(result.Name);
         		soldierIdTextView.setText(Integer.toString(result.SoldierID));
@@ -153,7 +154,9 @@ public class MainActivity extends ActionBarActivity {
         			authorizationsTableLayout.addView(generateRow(permission.CarID, permission.CarType, permission.Base, permission.StartDate, permission.ExpirationDate));
         		}
         	}
-		});
+		};
+		
+	    ServerUtils.runGetRequest("http://www.hemed.podserver.info/?nfcid=" + certId, null, modelResponseListener);
 	}
     
     private TableRow generateRow(String carNumber, String carType, String base,String startDate, String expirationDate)
