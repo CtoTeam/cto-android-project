@@ -10,7 +10,6 @@ public class SoldierDetails implements NetworkModel{
 	public String Name;
 	public String CertID;
 	public String ExpirationDate;
-	@SerializedName("IsValid")
-	public boolean IsValidCert;
+	public boolean IsStolen;
 	public CarPermission[] CarPermissions;
 }
