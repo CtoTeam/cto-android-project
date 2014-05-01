@@ -1,7 +1,5 @@
 package cto.team.certificatechecker.ui.activities;
 
-import java.util.Date;
-
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -12,19 +10,20 @@ import android.nfc.tech.NfcB;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import cto.team.certificatechecker.R;
 import cto.team.certificatechecker.models.CarPermission;
 import cto.team.certificatechecker.models.SoldierDetails;
+import cto.team.certificatechecker.networking.request.AsyncTaskFtpRequest;
 import cto.team.certificatechecker.networking.response.ModelResponseListener;
 import cto.team.certificatechecker.networking.utils.ServerUtils;
 
@@ -35,6 +34,7 @@ public class MainActivity extends ActionBarActivity {
 	private TextView certNumberTextView;
 	private TextView certDateTextView;
 	private TableLayout authorizationsTableLayout;
+	private ImageView soldierImage;
 	
 	private static final int COLUMN_WIDTH = 20;
 	private static final int DATE_COLUMN_WIDTH = 30;
@@ -96,6 +96,7 @@ public class MainActivity extends ActionBarActivity {
     	certNumberTextView = (TextView)findViewById(R.id.certNumber);
     	certDateTextView = (TextView)findViewById(R.id.certDate);
     	authorizationsTableLayout = (TableLayout)findViewById(R.id.authorizationsTableContent);
+    	soldierImage = (ImageView)findViewById(R.id.soldierImage);
     	
     	
 		// Construct the data to write to the tag
@@ -131,34 +132,40 @@ public class MainActivity extends ActionBarActivity {
 	    Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
 	    
 	    byte[] certIdBytes = tag.getId();
-    	String certId = certIdBytes[0] + "," + certIdBytes[1] + "," + certIdBytes[2] + certIdBytes[3];
+    	String certId = certIdBytes[0] + "," + certIdBytes[1] + "," + certIdBytes[2] + "," + certIdBytes[3];
 //    	params.put("nfcid", "12345");
 	    // "http://www.hemed.podserver.info/?nfcid=12345"
-	    ServerUtils.runGetRequest("http://www.hemed.podserver.info/?nfcid=" + certId, null, new ModelResponseListener<SoldierDetails>(this, SoldierDetails.class) {
+    	
+    	ModelResponseListener<SoldierDetails> modelResponseListener = new ModelResponseListener<SoldierDetails>(this, SoldierDetails.class) {
 	    	@Override
         	public void onComplete(SoldierDetails result) {
         		// TODO Auto-generated method stub
 
+	    		new AsyncTaskFtpRequest(getContext(), soldierImage).execute(Integer.toString(result.SoldierID));
+	    		
         		soldierNameTextView.setText(result.Name);
-        		soldierIdTextView.setText(result.SoldierId);
+        		soldierIdTextView.setText(Integer.toString(result.SoldierID));
         		certNumberTextView.setText(result.CertID);
-        		certDateTextView.setText(DateFormat.format("dd/MM/yyyy", result.ExpirationDate));
+        		certDateTextView.setText(result.ExpirationDate);
         		
-        		for (int i = 0; i < result.Permissions.length; i++)
+        		authorizationsTableLayout.removeAllViews();
+        		for (int i = 0; i < result.CarPermissions.length; i++)
         		{
-        			CarPermission permission = result.Permissions[i];
+        			CarPermission permission = result.CarPermissions[i];
         			authorizationsTableLayout.addView(generateRow(permission.CarID, permission.CarType, permission.Base, permission.StartDate, permission.ExpirationDate));
         		}
         	}
-		});
+		};
+		
+	    ServerUtils.runGetRequest("http://www.hemed.podserver.info/?nfcid=" + certId, null, modelResponseListener);
 	}
     
-    private TableRow generateRow(String carNumber, String carType, String base,Date startDate, Date expirationDate)
+    private TableRow generateRow(String carNumber, String carType, String base,String startDate, String expirationDate)
     {
     	TableRow row = new TableRow(getApplicationContext());
     	row.addView(generateColumn(base,COLUMN_WIDTH, false));
-    	row.addView(generateColumn(DateFormat.format("dd/MM/yyyy", expirationDate).toString(),DATE_COLUMN_WIDTH ,true));
-    	row.addView(generateColumn(DateFormat.format("dd/MM/yyyy", startDate).toString(),DATE_COLUMN_WIDTH, true));
+    	row.addView(generateColumn(expirationDate,DATE_COLUMN_WIDTH ,true));
+    	row.addView(generateColumn(startDate,DATE_COLUMN_WIDTH, true));
     	row.addView(generateColumn(carType,COLUMN_WIDTH, false));
     	row.addView(generateColumn(carNumber,COLUMN_WIDTH, true));
     	

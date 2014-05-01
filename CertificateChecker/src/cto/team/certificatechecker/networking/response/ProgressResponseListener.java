@@ -17,8 +17,12 @@ public abstract class ProgressResponseListener implements ResponseListener {
 		this.context = context;
 	}
 	
+	public Context getContext() {
+		return this.context;
+	}
+	
 	public void showProgressBar() {
-		Resources res = context.getResources();
+		Resources res = getContext().getResources();
 		dialog = ProgressDialog.show(context,
 				res.getString(R.string.request_progress_dialog_title),
 				res.getString(R.string.request_progress_dialog_content));
