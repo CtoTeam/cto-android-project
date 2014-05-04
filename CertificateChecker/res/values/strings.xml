@@ -27,6 +27,7 @@
 	<!-- SharedPreferences -->
 	<string name="preferences_key_send_sms">SEND_SMS</string>
 	<string name="preferences_title_send_sms">שליחת SMS</string>
-	<string name="preferences_summery_send_sms">האם לשלוח SMS לאחר זיהוי של תעודה לא מזוהה</string>
+	<string name="preferences_summery_on_send_sms">שולח SMS לאחר זיהוי של תעודה גנובה</string>
+	<string name="preferences_summery_off_send_sms">לא שולח SMS לאחר זיהוי של תעודה גנובה</string>
 
 </resources>
