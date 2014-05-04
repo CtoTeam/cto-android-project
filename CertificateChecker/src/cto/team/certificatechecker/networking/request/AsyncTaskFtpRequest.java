@@ -8,6 +8,7 @@ import org.apache.commons.net.ftp.FTPReply;
 
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -15,8 +16,8 @@ import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 import cto.team.certificatechecker.ui.activities.InvalidCertDialog;
+import cto.team.certificatechecker.utils.SharedPreferencesWrapper;
 
 public class AsyncTaskFtpRequest extends AsyncTask<String, String, Bitmap> {
 	
@@ -26,14 +27,16 @@ public class AsyncTaskFtpRequest extends AsyncTask<String, String, Bitmap> {
 	private int isValid;
 	private RelativeLayout relativeLayout;
 	private FragmentManager fragmentManager;
+	private Context context;
 	
-	public AsyncTaskFtpRequest(ProgressDialog dialog, ImageView imageView, RelativeLayout relativeLayout, int isValid, FragmentManager fragmentManager) {
+	public AsyncTaskFtpRequest(Context context, ProgressDialog dialog, ImageView imageView, RelativeLayout relativeLayout, int isValid, FragmentManager fragmentManager) {
 		this.ftpClient = new FTPClient();
 		this.imageView = imageView;
 		this.dialog = dialog;
 		this.relativeLayout = relativeLayout;
 		this.isValid = isValid;
 		this.fragmentManager = fragmentManager;
+		this.context = context;
 	}
 	
 	@Override
@@ -68,12 +71,17 @@ public class AsyncTaskFtpRequest extends AsyncTask<String, String, Bitmap> {
 			InvalidCertDialog icd = new InvalidCertDialog();
 			icd.message = "אזהרה! תעודה גנובה";
 			
-	    	try { 
-				SmsManager smsManager = SmsManager.getDefault();
-				smsManager.sendTextMessage("0506541177", null, "בוצע שימוש בתעודה שדווחה כגנובה/נאבדה בכניסה לבסיס", null, null);
-			  } catch (Exception e) {
+			try {
+				boolean sendSms = SharedPreferencesWrapper.sendSms(this.context);
+				if (sendSms) {
+					SmsManager smsManager = SmsManager.getDefault();
+					smsManager.sendTextMessage("0506541177", null,
+							"בוצע שימוש בתעודה שדווחה כגנובה/נאבדה בכניסה לבסיס",
+							null, null);
+				}
+			} catch (Exception e) {
 				e.printStackTrace();
-			  }
+			}
 			
 			icd.show(fragmentManager, null);		
 		}

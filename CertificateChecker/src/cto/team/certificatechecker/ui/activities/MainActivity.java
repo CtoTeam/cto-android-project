@@ -31,6 +31,7 @@ import cto.team.certificatechecker.models.SoldierDetails;
 import cto.team.certificatechecker.networking.request.AsyncTaskFtpRequest;
 import cto.team.certificatechecker.networking.response.ModelResponseListener;
 import cto.team.certificatechecker.networking.utils.ServerUtils;
+import cto.team.certificatechecker.utils.SharedPreferencesWrapper;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -67,11 +68,10 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+        	Intent intent = new Intent(this, SettingsActivity.class);
+        	startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -161,24 +161,26 @@ public class MainActivity extends ActionBarActivity {
 					InvalidCertDialog icd = new InvalidCertDialog();
 					icd.message = "אזהרה! תעודה לא מזוהה";
 					
-			    	try { 
-						SmsManager smsManager = SmsManager.getDefault();
-						smsManager.sendTextMessage("0506541177", null, "בוצע שימוש בתעודה לא מזוהה בכניסה לבסיס", null, null);
-						Toast.makeText(getApplicationContext(), "SMS Sent!",
-									Toast.LENGTH_LONG).show();
-					  } catch (Exception e) {
-						Toast.makeText(getApplicationContext(),
-							"SMS faild",
-							Toast.LENGTH_LONG).show();
+					try {
+						boolean sendSms = SharedPreferencesWrapper.sendSms(getApplicationContext());
+						if (sendSms) {
+							SmsManager smsManager = SmsManager.getDefault();
+							smsManager.sendTextMessage("0506541177", null, "בוצע שימוש בתעודה לא מזוהה בכניסה לבסיס", null, null);
+							Toast.makeText(getApplicationContext(),
+									"SMS Sent!", Toast.LENGTH_LONG).show();
+						}
+					} catch (Exception e) {
+						Toast.makeText(getApplicationContext(), "SMS faild",
+								Toast.LENGTH_LONG).show();
 						e.printStackTrace();
-					  }
+					}
 					
 					icd.show(getFragmentManager(), null);
 					
 					return;
 	    		}
 	    		
-	    		new AsyncTaskFtpRequest(dialog, soldierImage, container, result.IsStolen, getFragmentManager()).execute(Integer.toString(result.SoldierID));
+	    		new AsyncTaskFtpRequest(getApplicationContext(), dialog, soldierImage, container, result.IsStolen, getFragmentManager()).execute(Integer.toString(result.SoldierID));
 	    		
         		soldierNameTextView.setText(result.Name);
         		soldierIdTextView.setText(Integer.toString(result.SoldierID));
