@@ -138,19 +138,19 @@
 
                     <TextView
                         android:id="@+id/startDateColumn"
-                        style="@style/EvenColumn"
+                        style="@style/OddColumn"
                         android:layout_width="30sp"
                         android:text="@string/StartDateColumn" />
 
                     <TextView
                         android:id="@+id/carTypeColumn"
-                        style="@style/OddColumn"
+                        style="@style/EvenColumn"
                         android:layout_width="30sp"
                         android:text="@string/CarTypeColumn" />
 
                     <TextView
                         android:id="@+id/carNumberColumn"
-                        style="@style/EvenColumn"
+                        style="@style/OddColumn"
                         android:layout_width="30sp"
                         android:text="@string/CarNumberColumn" />
                 </TableRow>

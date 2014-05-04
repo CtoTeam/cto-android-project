@@ -153,7 +153,7 @@ public class MainActivity extends ActionBarActivity {
         	public void onComplete(SoldierDetails result) {
         		// TODO Auto-generated method stub
 
-	    		new AsyncTaskFtpRequest(dialog, soldierImage).execute(Integer.toString(result.SoldierID));
+	    		new AsyncTaskFtpRequest(dialog, soldierImage, container, result.IsStolen, getFragmentManager()).execute(Integer.toString(result.SoldierID));
 	    		
         		soldierNameTextView.setText(result.Name);
         		soldierIdTextView.setText(Integer.toString(result.SoldierID));
@@ -166,14 +166,6 @@ public class MainActivity extends ActionBarActivity {
         			CarPermission permission = result.CarPermissions[i];
         			authorizationsTableLayout.addView(generateRow(permission.CarID, permission.CarType, permission.Base, permission.StartDate, permission.ExpirationDate));
         		}
-        		
-        		if (result.IsStolen == 0)
-        		{
-        			InvalidCertDialog icd = new InvalidCertDialog();
-        			icd.show(getFragmentManager(), "");
-        		}
-        		
-        		container.setVisibility(View.VISIBLE);
         	}
 		};
 		
@@ -183,16 +175,16 @@ public class MainActivity extends ActionBarActivity {
     private TableRow generateRow(String carNumber, String carType, String base,String startDate, String expirationDate)
     {
     	TableRow row = new TableRow(getApplicationContext());
-    	row.addView(generateColumn(base,COLUMN_WIDTH, false));
-    	row.addView(generateColumn(expirationDate,DATE_COLUMN_WIDTH ,true));
-    	row.addView(generateColumn(startDate,DATE_COLUMN_WIDTH, true));
-    	row.addView(generateColumn(carType,COLUMN_WIDTH, false));
-    	row.addView(generateColumn(carNumber,COLUMN_WIDTH, true));
+    	row.addView(generateColumn(base, false));
+    	row.addView(generateColumn(expirationDate,true));
+    	row.addView(generateColumn(startDate, false));
+    	row.addView(generateColumn(carType, true));
+    	row.addView(generateColumn(carNumber, false));
     	
     	return row;
     }
     
-    private TextView generateColumn(String value,int width,  boolean isEven)
+    private TextView generateColumn(String value,boolean isEven)
     {
     	TextView column = new TextView(getApplicationContext());
     	column.setText(value);
