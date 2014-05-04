@@ -153,6 +153,17 @@ public class MainActivity extends ActionBarActivity {
         	public void onComplete(SoldierDetails result) {
         		// TODO Auto-generated method stub
 
+	    		if (result == null)
+	    		{
+	    			container.setVisibility(View.VISIBLE);
+	    			
+					InvalidCertDialog icd = new InvalidCertDialog();
+					icd.message = "שגיאה! תעודה לא מזוהה";
+					icd.show(getFragmentManager(), null);		
+	    			
+	    			return;
+	    		}
+	    		
 	    		new AsyncTaskFtpRequest(dialog, soldierImage, container, result.IsStolen, getFragmentManager()).execute(Integer.toString(result.SoldierID));
 	    		
         		soldierNameTextView.setText(result.Name);
