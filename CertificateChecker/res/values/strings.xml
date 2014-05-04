@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">תעודות וזה</string>
+    <string name="app_name">NFCert</string>
 
     <!-- Network Request Progress dialog -->
     <string name="request_progress_dialog_title">טוען</string>
