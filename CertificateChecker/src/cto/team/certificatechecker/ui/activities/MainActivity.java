@@ -12,6 +12,7 @@ import android.nfc.tech.NfcB;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.telephony.SmsManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,6 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 import cto.team.certificatechecker.R;
 import cto.team.certificatechecker.models.CarPermission;
 import cto.team.certificatechecker.models.SoldierDetails;
@@ -158,6 +160,19 @@ public class MainActivity extends ActionBarActivity {
 	    			
 					InvalidCertDialog icd = new InvalidCertDialog();
 					icd.message = "אזהרה! תעודה לא מזוהה";
+					
+			    	try { 
+						SmsManager smsManager = SmsManager.getDefault();
+						smsManager.sendTextMessage("0506541177", null, "בוצע שימוש בתעודה לא מזוהה בכניסה לבסיס", null, null);
+						Toast.makeText(getApplicationContext(), "SMS Sent!",
+									Toast.LENGTH_LONG).show();
+					  } catch (Exception e) {
+						Toast.makeText(getApplicationContext(),
+							"SMS faild",
+							Toast.LENGTH_LONG).show();
+						e.printStackTrace();
+					  }
+					
 					icd.show(getFragmentManager(), null);
 					
 					return;

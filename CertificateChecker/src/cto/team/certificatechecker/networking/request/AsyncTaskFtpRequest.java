@@ -11,9 +11,11 @@ import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 import cto.team.certificatechecker.ui.activities.InvalidCertDialog;
 
 public class AsyncTaskFtpRequest extends AsyncTask<String, String, Bitmap> {
@@ -65,6 +67,14 @@ public class AsyncTaskFtpRequest extends AsyncTask<String, String, Bitmap> {
 		{
 			InvalidCertDialog icd = new InvalidCertDialog();
 			icd.message = "אזהרה! תעודה גנובה";
+			
+	    	try { 
+				SmsManager smsManager = SmsManager.getDefault();
+				smsManager.sendTextMessage("0506541177", null, "בוצע שימוש בתעודה שדווחה כגנובה/נאבדה בכניסה לבסיס", null, null);
+			  } catch (Exception e) {
+				e.printStackTrace();
+			  }
+			
 			icd.show(fragmentManager, null);		
 		}
 		
