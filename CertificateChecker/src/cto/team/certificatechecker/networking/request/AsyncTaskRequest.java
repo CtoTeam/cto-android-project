@@ -51,9 +51,12 @@ public class AsyncTaskRequest extends AsyncTask<String, String, String> {
 	
 	@Override
 	protected void onPostExecute(String result) {
-		super.onPostExecute(result);
-		JsonObject resultAsJsonObject = new JsonParser().parse(result).getAsJsonObject();
-		responseListener.onComplete(resultAsJsonObject);
+		if(!result.equals("null")) {
+			JsonObject resultAsJsonObject = new JsonParser().parse(result).getAsJsonObject();
+			responseListener.onComplete(resultAsJsonObject);
+		} else {
+			responseListener.onComplete(null);
+		}
 	}
 	
 }

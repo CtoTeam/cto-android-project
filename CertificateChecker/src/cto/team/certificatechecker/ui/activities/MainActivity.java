@@ -151,17 +151,16 @@ public class MainActivity extends ActionBarActivity {
     	ModelResponseListener<SoldierDetails> modelResponseListener = new ModelResponseListener<SoldierDetails>(this, SoldierDetails.class) {
 	    	@Override
         	public void onComplete(SoldierDetails result) {
-        		// TODO Auto-generated method stub
-
-	    		if (result == null)
-	    		{
+	    		if(result == null) {
+	    			dialog.dismiss();
+	    			
 	    			container.setVisibility(View.INVISIBLE);
 	    			
 					InvalidCertDialog icd = new InvalidCertDialog();
-					icd.message = "שגיאה! תעודה לא מזוהה";
-					icd.show(getFragmentManager(), null);		
-	    			
-	    			return;
+					icd.message = "אזהרה! תעודה לא מזוהה";
+					icd.show(getFragmentManager(), null);
+					
+					return;
 	    		}
 	    		
 	    		new AsyncTaskFtpRequest(dialog, soldierImage, container, result.IsStolen, getFragmentManager()).execute(Integer.toString(result.SoldierID));

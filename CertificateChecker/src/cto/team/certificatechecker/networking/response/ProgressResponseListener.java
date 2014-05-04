@@ -28,7 +28,7 @@ public abstract class ProgressResponseListener implements ResponseListener {
 				res.getString(R.string.request_progress_dialog_content));
 	}
 	
-	private void dismissProgressBar() {
+	protected void dismissProgressBar() {
 		if(dialog != null) {
 			dialog.dismiss();
 		}
@@ -41,7 +41,7 @@ public abstract class ProgressResponseListener implements ResponseListener {
 
 	@Override
 	public void onErrorResponse(String errorResponse) {
-		dismissProgressBar();		
+		dismissProgressBar();
 	}
 
 }
