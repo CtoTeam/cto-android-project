@@ -155,7 +155,7 @@ public class MainActivity extends ActionBarActivity {
 
 	    		if (result == null)
 	    		{
-	    			container.setVisibility(View.VISIBLE);
+	    			container.setVisibility(View.INVISIBLE);
 	    			
 					InvalidCertDialog icd = new InvalidCertDialog();
 					icd.message = "שגיאה! תעודה לא מזוהה";
